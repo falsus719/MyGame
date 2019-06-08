@@ -112,6 +112,10 @@ bool HelloWorld::init()
 	//updateを有効化する
 	this->scheduleUpdate();
 
+	counter = 0;
+
+	state = 0;
+
 	return true;
 }
 
@@ -131,15 +135,51 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 
 void HelloWorld::update(float delta)
 {
-	Vec2 pos = sprite->getPosition();
+	/*counter++;
+	float opacity = 255 - (counter / 300.0f * 255.0f);
+	if (opacity < 0)
+	{
+		opacity = 0.0f;
+	}
+	sprite->setOpacity(opacity);*/
 
-	pos += Vec2(-1.0f, 0.0f);
+	Vec2 pos;
 
-	sprite->setPosition(pos);
-
-	int opa = sprite->getOpacity();
-
-	opa -= 1;
-
-	sprite->setOpacity((int)opa);
+	switch (state)
+	{
+		//左移動
+	case 0:
+		pos = sprite->getPosition();
+		pos += Vec2(-5.0f, 0.0f);
+		sprite->setPosition(pos);
+		//左端に達したら
+		if (pos.x <= 110) { state = 1; }
+		break;
+		//下移動
+	case 1:
+		pos = sprite->getPosition();
+		pos += Vec2(-0.0f, -5.0f);
+		sprite->setPosition(pos);
+		//下端に達したら
+		if (pos.y <= 150) { state = 2; }
+		break;
+		//右移動
+	case 2:
+		pos = sprite->getPosition();
+		pos += Vec2(5.0f, 0.0f);
+		sprite->setPosition(pos);
+		//右端に達したら
+		if (pos.x >= 1180) { state = 3; }
+		break;
+		//上移動
+	case 3:
+		pos = sprite->getPosition();
+		pos += Vec2(0.0f, 5.0f);
+		sprite->setPosition(pos);
+		//上端に達したら
+		if (pos.y >= 550) { state = 0; }
+		break;
+	default:
+		break;
+	}
 }
