@@ -101,18 +101,42 @@ bool HelloWorld::init()
 		this->addChild(label, 1);
 	}
 
-	sprite = Sprite::create("Razer.png");
+	sprite = Sprite::create("base008.png");
+	sprite2 = Sprite::create("Razer.png");
 	this->addChild(sprite);
+	this->addChild(sprite2);
 	//sprite->setPosition(Vec2(650, 350));
 	sprite->setPosition(Vec2(1100, 550));
 	sprite->setColor(Color3B(255, 255, 255));
 	sprite->setOpacity((int)255);
-	sprite->setScale(0.5);
+	sprite->setScale(3.0f);
+
+	sprite2->setPosition(Vec2(1100, 550));
+	sprite2->setColor(Color3B(255, 255, 255));
+	sprite2->setOpacity((int)255);
+	sprite2->setScale(0.5);
+
+	sprite->setTextureRect(Rect(0, 32, 32, 32));
+	sprite->getTexture()->setAliasTexParameters();
+
+	//画像の左下が(0,0)
+	//画像の右上が(1,0)の座標系で
+	//基準点を指定する
+	sprite->setAnchorPoint(Vec2(0.0f, 1.0f));
+
+	//sprite->setRotation(45.0f);
 
 	//updateを有効化する
 	this->scheduleUpdate();
 
 	counter = 0;
+	counter2 = 0;
+
+	colg = 0.0f;
+	colb = 0.0f;
+	rot = 0.0f;
+	blue = 0.0f;
+	opacity = 0.0f;
 
 	state = 0;
 
@@ -142,6 +166,30 @@ void HelloWorld::update(float delta)
 		opacity = 0.0f;
 	}
 	sprite->setOpacity(opacity);*/
+
+	//rot = rot + 2;
+	//sprite->setRotation(rot);
+
+	//180フレームかけて255になる
+	blue += 255.0f / 180.0f;
+	//最大値を超えないように制限する
+	if (blue > 255.0f)
+	{
+		blue = 255.0f;
+	}
+	//赤と青の数値が逆の動き
+	sprite->setColor(Color3B(255 - blue, 0, blue));
+
+	opacity += 1.0f;
+	if (opacity > 255.0f)
+	{
+		opacity = 255.0f;
+	}
+
+	//spriteがフェードアウト
+	sprite->setOpacity(255 - opacity);
+	//sprite2がフェードアウト
+	sprite2->setOpacity(opacity);
 
 	Vec2 pos;
 
