@@ -101,41 +101,48 @@ bool HelloWorld::init()
 		this->addChild(label, 1);
 	}
 
-	//sprite = Sprite::create("Razer.png");
-	//sprite2 = Sprite::create("Razer.png");
-	//this->addChild(sprite);
-	//this->addChild(sprite2);
+	sprite = Sprite::create("Razer.png");
+	sprite2 = Sprite::create("Razer.png");
+	this->addChild(sprite);
+	this->addChild(sprite2);
 
-	//{
-	//	sprite->setScale(0.25f);
-	//	sprite->setPosition(Vec2(650, 350));
-	//	//アクションの作成(1秒かけて　右に200、上に100動く)
-	//	MoveBy* action1 = MoveBy::create(1.0f, Vec2(200, 100));
-	//	EaseBounceOut* action2 = EaseBounceOut::create(action1);
-	//	//ノードに対してアクションを実行する
-	//	sprite->runAction(action2);
-	//}
+	{
+		sprite->setScale(0.25f);
+		sprite->setPosition(Vec2(650, 250));
+		JumpBy* action1 = JumpBy::create(1.0f,Vec2(100,100),200.0f,1);
+		EaseBounceOut* action2 = EaseBounceOut::create(action1);
+		//ノードに対してアクションを実行する
+		sprite->runAction(action2);
+	}
 
-	//{
-	//	sprite2->setScale(0.25);
-	//	sprite2->setPosition(Vec2(550, 250));
-	//	//アクションの作成(1秒かけて　右に200、上に100動く)
-	//	MoveBy* action1 = MoveBy::create(1.0f, Vec2(200, 100));
-	//	EaseBounceOut* action2 = EaseBounceOut::create(action1);
-	//	
-	//	sprite2->runAction(action2);
-	//}
+	{
+		sprite2->setScale(0.25);
+		sprite2->setPosition(Vec2(550, 250));
+		JumpBy* action1 = JumpBy::create(1.0f,Vec2(100,100),200.0f,1);
+		EaseBounceOut* action2 = EaseBounceOut::create(action1);
+		
+		sprite2->runAction(action2);
+	}
+
+	//乱数の初期化 
+	//Random r = new Random();
+	/*srand(time(nullptr));
 
 	for (int i = 0; i < 5; i++)
 	{
 		sprite[i] = Sprite::create("Razer.png");
-		this->addChild(sprite[0]);
+		this->addChild(sprite[i]);
 		sprite[i]->setScale(0.25f);
 		sprite[i]->setPosition(Vec2(650, 350));
 
-		MoveBy* action1 = MoveBy::create(1.0f, Vec2(200, 100));
+		float mx, my;
+
+		mx = (float)rand() / RAND_MAX * 500 -250;
+		my = (float)rand() / RAND_MAX * 500 -250;
+
+		MoveBy* action1 = MoveBy::create(1.0f, Vec2(mx, my));
 		sprite[i]->runAction(action1);
-	}
+	}*/
 
 	//EaseIn* action2 = EaseIn::create(action1, 2.0f);
 	
