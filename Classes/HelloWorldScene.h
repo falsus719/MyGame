@@ -43,10 +43,10 @@ public:
 	CREATE_FUNC(HelloWorld);
 
 	//Sprite”z—ñ
-	//cocos2d::Sprite* sprite[100];
+	cocos2d::Sprite* sprite[100];
 
-	cocos2d::Sprite*sprite;
-	cocos2d::Sprite*sprite2;
+	/*cocos2d::Sprite*sprite;
+	cocos2d::Sprite*sprite2;*/
 };
 
 #endif // __HELLOWORLD_SCENE_H__
