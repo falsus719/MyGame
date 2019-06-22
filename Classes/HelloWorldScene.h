@@ -44,19 +44,6 @@ public:
 
 	cocos2d::Sprite*sprite;
 	cocos2d::Sprite*sprite2;
-
-	int counter;
-	int counter2;
-	int counter3;
-	int counter4;
-
-	float colg;
-	float colb;
-	float rot;
-	float blue;
-	float opacity;
-
-	int state;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
