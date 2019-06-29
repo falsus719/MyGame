@@ -115,8 +115,13 @@ bool HelloWorld::init()
 	//連続アクションの生成
 	Sequence* action5 = Sequence::create(action1, action4, nullptr);
 
+	//アクション6の生成
+	JumpBy*action6 = JumpBy::create(1.0f, Vec2(100.0f, 100.0f), 100, 1);
+	//繰り返しアクションの生成
+	Repeat* action7 = Repeat::create(action5, 3);
+
 	//アクションの実行
-	spr->runAction(action5);
+	spr->runAction(action7);
 
 	//sprite = Sprite::create("Razer.png");
 	//sprite2 = Sprite::create("Razer.png");
