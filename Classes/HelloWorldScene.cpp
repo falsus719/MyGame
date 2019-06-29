@@ -101,6 +101,23 @@ bool HelloWorld::init()
 		this->addChild(label, 1);
 	}
 
+	Sprite* spr = Sprite::create("Razer.png");
+	this->addChild(spr);
+
+	//アクション1の生成
+	MoveTo* action1 = MoveTo::create(2.0f, Vec2(600.0f, 300.0f));
+	//アクション2の生成
+	JumpTo* action2 = JumpTo::create(1.0f,Vec2(200.0f,200.0f),300.0f,2);
+	//アクション3の生成
+	TintTo* action3 = TintTo::create(2.0f, Color3B(255, 255, 0));
+	//同時アクションの生成
+	Spawn* action4 = Spawn::create(action2, action3, nullptr);
+	//連続アクションの生成
+	Sequence* action5 = Sequence::create(action1, action4, nullptr);
+
+	//アクションの実行
+	spr->runAction(action5);
+
 	//sprite = Sprite::create("Razer.png");
 	//sprite2 = Sprite::create("Razer.png");
 	//this->addChild(sprite);
@@ -126,23 +143,24 @@ bool HelloWorld::init()
 
 	//乱数の初期化 
 	//Random r = new Random();
-	srand(time(nullptr));
+	//srand(time(nullptr));
 
-	for (int i = 0; i < 10; i++)
+	
+
+	/*for (int i = 0; i < 10; i++)
 	{
+		float mx, my;
+
+		mx = (float)rand() / RAND_MAX * 500 - 250;
+		my = (float)rand() / RAND_MAX * 500 - 250;
 		sprite[i] = Sprite::create("Razer.png");
 		this->addChild(sprite[i]);
 		sprite[i]->setScale(0.25f);
-		sprite[i]->setPosition(Vec2(i*100 + 100, 250));
+		sprite[i]->setPosition(Vec2(650, 350));
 
-		float mx, my;
-
-		mx = (float)rand() / RAND_MAX * 500 -250;
-		my = (float)rand() / RAND_MAX * 500 -250;
-
-		JumpBy* action1 = JumpBy::create(1.0f, Vec2(100, 100), 200.0f, 1);
+		MoveBy* action1 = MoveBy::create(1.0f, Vec2(mx, my));
 		sprite[i]->runAction(action1);
-	}
+	}*/
 
 	//EaseIn* action2 = EaseIn::create(action1, 2.0f);
 	
